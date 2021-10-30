@@ -8,8 +8,10 @@ import timber.log.Timber
 
 class ShoeViewModel : ViewModel() {
 
-    private val _shoeLiveData = MutableLiveData<MutableList<Shoe>>()
-    val shoeLiveData: LiveData<MutableList<Shoe>>
+    private val shoes: MutableList<Shoe> = mutableListOf()
+
+    private val _shoeLiveData = MutableLiveData<List<Shoe>>()
+    val shoeLiveData: LiveData<List<Shoe>>
         get() = _shoeLiveData
 
     private val _eventSaveLiveData = MutableLiveData<Boolean>()
@@ -21,7 +23,8 @@ class ShoeViewModel : ViewModel() {
             if (name.isEmpty() || size == null || company.isEmpty() || description.isEmpty()) return
         }
 
-        _shoeLiveData.value?.add(shoe)
+        shoes.add(shoe)
+        _shoeLiveData.value = shoes
         _eventSaveLiveData.value = true
         Timber.i("Added new shoe")
     }
