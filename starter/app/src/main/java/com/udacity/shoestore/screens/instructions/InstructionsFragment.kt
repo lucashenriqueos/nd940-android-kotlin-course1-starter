@@ -17,9 +17,8 @@ class InstructionsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding: FragmentInstructionsBinding = DataBindingUtil.inflate(
+        val binding = FragmentInstructionsBinding.inflate(
             inflater,
-            R.layout.fragment_instructions,
             container,
             false
         )

@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.ShoeViewModel
 import com.udacity.shoestore.databinding.FragmentDetailBinding
+import com.udacity.shoestore.databinding.FragmentListingBinding
 import com.udacity.shoestore.models.Shoe
 
 class DetailFragment : Fragment() {
@@ -27,17 +28,15 @@ class DetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_detail,
-            container,
-            false
-        )
 
-        binding.shoe = Shoe()
+        binding =  FragmentDetailBinding.inflate(inflater, container, false)
 
-        binding.btnCancel.setOnClickListener {
-            goToListing()
+        with(binding) {
+            shoe = Shoe()
+            viewModel = this@DetailFragment.viewModel
+            btnCancel.setOnClickListener {
+                goToListing()
+            }
         }
 
         viewModel.eventSaveLiveData.observe(viewLifecycleOwner) { hasSaved ->
@@ -47,7 +46,6 @@ class DetailFragment : Fragment() {
             }
         }
 
-        binding.viewModel = viewModel
         return binding.root
     }
 
