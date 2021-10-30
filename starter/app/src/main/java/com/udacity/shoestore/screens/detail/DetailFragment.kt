@@ -6,13 +6,17 @@ import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.InverseBindingAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.ShoeViewModel
 import com.udacity.shoestore.databinding.FragmentDetailBinding
+import com.udacity.shoestore.models.Shoe
 
 class DetailFragment : Fragment() {
 
@@ -31,15 +35,16 @@ class DetailFragment : Fragment() {
             false
         )
 
+        binding.shoe = Shoe()
 
-        binding.btnSave.setOnClickListener {
-            viewModel.addNewShoe(
-                name = binding.edtProductName.text.toString(),
-                size = binding.edtProductSize.text.toDouble(),
-                company = binding.edtProductCompany.text.toString(),
-                description = binding.edtProductDescription.text.toString()
-            )
-        }
+//        binding.btnSave.setOnClickListener {
+//            viewModel.addNewShoe(
+//                name = binding.edtProductName.text.toString(),
+//                size = binding.edtProductSize.text.toDouble(),
+//                company = binding.edtProductCompany.text.toString(),
+//                description = binding.edtProductDescription.text.toString()
+//            )
+//        }
 
         binding.btnCancel.setOnClickListener {
             goToListing()
@@ -59,6 +64,18 @@ class DetailFragment : Fragment() {
     private fun goToListing() {
         findNavController().navigateUp()
     }
+}
+
+@BindingAdapter("android:text")
+fun EditText.bindAnyToString(value: Any?) {
+    value?.let {
+        setText(value.toString())
+    }
+}
+
+@InverseBindingAdapter(attribute = "android:text")
+fun EditText.bindStringToDouble(): Double? {
+    return text.toDouble()
 }
 
 private fun Editable.toDouble(): Double? {

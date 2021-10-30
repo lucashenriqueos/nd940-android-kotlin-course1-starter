@@ -16,31 +16,14 @@ class ShoeViewModel : ViewModel() {
     val eventSaveLiveData: LiveData<Boolean>
         get() = _eventSaveLiveData
 
-    init {
-        Timber.i("Initialized")
-        _shoeLiveData.value = mutableListOf(
-            Shoe(
-                name = "Superstar",
-                size = 42.0,
-                company = "Adidas",
-                description = "Adidas superstar"
-            )
-        )
-    }
+    fun addShoe(shoe: Shoe) {
+        with (shoe) {
+            if (name.isEmpty() || size == null || company.isEmpty() || description.isEmpty()) return
+        }
 
-    fun addNewShoe(name: String, size: Double?, company: String, description: String) {
-        if (name.isEmpty() || size == null || company.isEmpty() || description.isEmpty()) return
-
-        Timber.i("Added new shoe")
-        _shoeLiveData.value?.add(
-            Shoe(
-                name = name,
-                size = size,
-                company = company,
-                description = description
-            )
-        )
+        _shoeLiveData.value?.add(shoe)
         _eventSaveLiveData.value = true
+        Timber.i("Added new shoe")
     }
 
     fun onItemSavedSuccess() {

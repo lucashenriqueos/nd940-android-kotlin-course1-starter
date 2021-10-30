@@ -4,6 +4,10 @@
     <data>
 
         <variable
+            name="shoe"
+            type="com.udacity.shoestore.models.Shoe" />
+
+        <variable
             name="viewModel"
             type="com.udacity.shoestore.ShoeViewModel" />
     </data>
@@ -26,7 +30,8 @@
             android:id="@+id/edt_product_name"
             android:layout_width="match_parent"
             android:layout_marginHorizontal="16dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@={shoe.name}"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -39,7 +44,8 @@
             android:id="@+id/edt_product_company"
             android:layout_width="match_parent"
             android:layout_marginHorizontal="16dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@={shoe.company}"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -53,7 +59,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:inputType="numberDecimal"/>
+            android:inputType="numberDecimal"
+            android:text="@={shoe.size}"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -66,7 +73,8 @@
             android:id="@+id/edt_product_description"
             android:layout_width="match_parent"
             android:layout_marginHorizontal="16dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@={shoe.description}"/>
 
         <Button
             android:id="@+id/btn_save"
@@ -74,7 +82,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/save" />
+            android:text="@string/save"
+            android:onClick="@{ () -> viewModel.addShoe(shoe) }"/>
 
         <Button
             android:id="@+id/btn_cancel"
