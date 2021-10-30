@@ -3,17 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- The usage of ConstraintLayout here was simply to  align the floating button at the bottom right corner
+    properly  -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".screens.listing.ListingFragment">
 
+        <!--    List-like purposes    -->
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true">
 
+            <!-- Initially I've changed this one to constraint to have a more dynamic list combined with a <merge>
+            and <include> to add them via binding here, so it wasn't necessary to build all views. But, had the
+            understanding by the requirements that was supposed to be a LinearLayout, so I've kept it here and made
+             a simpler design
+             -->
             <LinearLayout
                 android:id="@+id/ctn_shoe"
                 android:layout_width="match_parent"

@@ -89,8 +89,12 @@ class ListingFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return NavigationUI.onNavDestinationSelected(item, requireView().findNavController())
-                || super.onOptionsItemSelected(item)
+        return if (item.itemId == R.id.loginFragment) {
+            requireView().findNavController().navigate(ListingFragmentDirections.actionListingFragmentToLoginFragment())
+            true
+        } else {
+            super.onOptionsItemSelected(item)
+        }
     }
 
     private fun Int.toDp(): Int {

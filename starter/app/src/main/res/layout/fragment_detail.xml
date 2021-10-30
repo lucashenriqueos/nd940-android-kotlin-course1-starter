@@ -12,6 +12,8 @@
             type="com.udacity.shoestore.ShoeViewModel" />
     </data>
 
+    <!-- The usage of LinearLayout here was choosen because of the simplicity of the designed screen. As it is only
+    some vertically aligned views, there's no need to use complex ViewGroups to build it   -->
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
