@@ -37,15 +37,6 @@ class DetailFragment : Fragment() {
 
         binding.shoe = Shoe()
 
-//        binding.btnSave.setOnClickListener {
-//            viewModel.addNewShoe(
-//                name = binding.edtProductName.text.toString(),
-//                size = binding.edtProductSize.text.toDouble(),
-//                company = binding.edtProductCompany.text.toString(),
-//                description = binding.edtProductDescription.text.toString()
-//            )
-//        }
-
         binding.btnCancel.setOnClickListener {
             goToListing()
         }
@@ -66,6 +57,10 @@ class DetailFragment : Fragment() {
     }
 }
 
+/*
+    Docs: https://developer.android.com/topic/libraries/data-binding/two-way
+    Credits: https://medium.com/@ssiasoft/two-way-data-binding-and-managing-text-inputs-in-android-9cc4701f628e
+ */
 @BindingAdapter("android:text")
 fun EditText.bindAnyToString(value: Any?) {
     value?.let {
